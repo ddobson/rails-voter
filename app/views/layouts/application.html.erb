@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Voter</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+  <%= render 'layouts/navigation_header' %>
+
+  <%= render 'layouts/messages' %>
+
+  <!-- Begin Body -->
+  <div class="container">
+    <div class="row">
+          <div class="col-md-3 col-md-offset-1 pull-right col-sm-12 col-xs-12" id="rightCol">
+                  
+          <div class="well"> 
+                  <ul class="nav nav-stacked" id="sidebar">
+                    <li>
+                      <%= link_to new_post_path do %>
+                        <button type="button" class="btn btn-default" aria-label="Left Align">
+                          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                          New Post
+                        </button>
+                      <% end %>
+                    </li>
+                  </ul>
+            </div>
+
+            </div>  
+            <div class="col-md-8 col-sm-12 col-xs-12">
+                <%= yield %> 
+          </div> 
+      </div>
+  </div>
+
+</body>
+</html>
+
+<!-- Ignore for now
+<div class="row">
+      <div class="col-md-4">
+        <% if user_signed_in? %>
+          <ul>
+            <li><% link_to 'Account', edit_user_registration_path %></li>
+            <li><% link_to 'Log out', destroy_user_session_path %></li>
+
+          </ul>
+        <% end %>
+      </div>
+    </div>
+-->

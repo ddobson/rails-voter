@@ -1,0 +1,16 @@
+<div class="row">
+
+  <div class="col-md-12">
+    <% @posts.each do |post| %>
+      <h4 class="post"><%= link_to(post.description, post.link) %></h4>
+      <p>Votes: <%= post.votes.sum(:vote_value).to_s %> || Posted: <%= post.created_at%> by <%= post.user.email %></p>
+      <%= link_to("/upvote/#{post.id}", class: "vote-glyphicon" ) do %>
+        <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+      <% end %> 
+      <%= link_to("/downvote/#{post.id}", class: "vote-glyphicon") do %>
+        <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
+      <% end %>
+      <hr class="col-md-12">
+      <% end %> 
+  </div>
+</div>
