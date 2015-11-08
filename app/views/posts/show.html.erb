@@ -1,2 +1,18 @@
-<h1>Post#show</h1>
-<p>Find me in app/views/post/show.html.erb</p>
+<h2><%= @post.description %></h2>
+
+<strong>Add a comment</strong>
+<%= form_tag "/posts/add_new_comment" do %>
+  <%= hidden_field_tag "id", @post.id %>
+  <%= text_area_tag :body %>
+  <%= submit_tag "Post Comment" %>
+<% end %>
+
+<div class="row">
+  <div class="col-md-12">
+    <% @comments.each do |comment| %>
+      <h5><%= comment.user.email %></h5>
+      <p><%= comment.body %></p>
+      <hr class="col-md-12">
+    <% end %> 
+  </div>
+</div>

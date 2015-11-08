@@ -21,6 +21,8 @@ class PostsController < ApplicationController
   end
 
   def show
+    @post = Post.find(params[:id])
+    @comments = Comment.where(commentable_id: @post.id, commentable_type: 'Post')
   end
 
   def edit
@@ -33,7 +35,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @post.votes += 1
     @post.save
-    redirect_to '/'
+    redirect_to :action => :index
   end
 
   def downvote
@@ -43,9 +45,17 @@ class PostsController < ApplicationController
     redirect_to '/'
   end
 
+  def add_new_comment
+    @post = Post.find(params[:id])
+    @user_who_commented = current_user
+    @comment = Comment.build_from( @post, @user_who_commented.id, params[:body] )
+    @comment.save!
+    redirect_to :action => :show, :id => @post
+  end
+
   private
 
   def get_safe_params(params)
-    params.require(:post).permit(:description, :link)
+    params.require(:post).permit(:id, :description, :link, :comment)
   end
 end

@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   get 'upvote/:id' => 'votes#upvote'
   get 'downvote/:id' => 'votes#downvote'
 
+  match "/posts/add_new_comment" => "posts#add_new_comment", :as => "add_new_comment_to_posts", :via => [:post]
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
