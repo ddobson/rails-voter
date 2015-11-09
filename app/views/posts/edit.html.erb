@@ -1,2 +1,13 @@
-<h1>Post#edit</h1>
-<p>Find me in app/views/post/edit.html.erb</p>
+<h1>Post#new</h1>
+
+<div class="jumbotron">
+  <%= bootstrap_form_for @post do |f| %>
+      <div>
+        <%= f.text_field :description %>
+      </div>
+      <div>
+        <%= f.text_field :link %>
+      </div>
+    <%= f.submit "Update" %>
+  <% end %>
+</div>

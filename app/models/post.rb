@@ -3,6 +3,7 @@ class Post < ActiveRecord::Base
   has_many :votes
   has_many :comments
   acts_as_commentable
+  acts_as_votable
 
   def latest
     Post.all.order(created_at: :desc).limit(20)

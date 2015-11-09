@@ -3,16 +3,20 @@
   <div class="col-xs-12">
     <% @posts.each do |post| %>
       <h4 class="post"><%= link_to(post.description, post.link) %></h4>
-        <p>Votes: <%= post.votes.sum(:vote_value).to_s %> || Posted: <%= post.created_at%> by <%= post.user.email %> </p>
+        <p>Posted: <%= time_ago_in_words(post.created_at) %> ago by <%= post.user.email %> </p>
         <p><strong><%= link_to('Comments', post) %> 
           (<%= post.comment_threads.count %>)
         </strong></p>
-          <%= link_to("/upvote/#{post.id}", class: "vote-glyphicon" ) do %>
+          <%= link_to(upvote_post_path(post), method: :put, class: "vote-glyphicon" ) do %>
             <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
           <% end %> 
-          <%= link_to("/downvote/#{post.id}", class: "vote-glyphicon") do %>
+          <%= link_to(downvote_post_path(post), method: :put, class: "vote-glyphicon") do %>
             <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
           <% end %>
+        <% if post.user == current_user %>
+          <%= link_to('Delete', post, method: :delete, class: "btn btn-danger pull-right") %>
+          <%= link_to('Edit', edit_post_path(post.id), class: "btn btn-primary pull-right") %>
+        <% end %>
       <hr class="col-xs-12">
     <% end %> 
   </div>

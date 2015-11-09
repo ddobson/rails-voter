@@ -26,23 +26,31 @@ class PostsController < ApplicationController
   end
 
   def edit
+    @post = Post.find(params[:id])
   end
 
-  def update
+  def update 
+    @post = Post.find(params[:id])
+    @post.update get_safe_params(params)
+    redirect_to :action => :index
+  end
+
+  def destroy
+    @post = Post.find(params[:id])
+    @post.destroy
+    redirect_to :action => :index
   end
 
   def upvote
     @post = Post.find(params[:id])
-    @post.votes += 1
-    @post.save
-    redirect_to :action => :index
+    @post.upvote_from current_user
+    redirect_to :back
   end
 
   def downvote
     @post = Post.find(params[:id])
-    @post.votes -= 1
-    @post.save
-    redirect_to '/'
+    @post.downvote_from current_user
+    redirect_to :back
   end
 
   def add_new_comment

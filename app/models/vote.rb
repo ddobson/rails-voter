@@ -1,12 +1,8 @@
 class Vote < ActiveRecord::Base
+  validates :voteable, :presence => true
+  validates :user, :presence => true
+
   belongs_to :user
   belongs_to :post
-
-  def upvote(user, post)
-    @vote = Vote.new
-    @vote.vote_value = 1
-    @vote.user = user
-    @vote.post = post
-    @vote.save
-  end
+  belongs_to :comment
 end

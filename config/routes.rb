@@ -1,10 +1,21 @@
 Rails.application.routes.draw do
   devise_for :users
-  root 'posts#index'
-  resources :posts
 
-  get 'upvote/:id' => 'votes#upvote'
-  get 'downvote/:id' => 'votes#downvote'
+  root 'posts#index'
+
+  resources :posts do
+    member do
+      put 'upvote', to: 'posts#upvote'
+      put 'downvote', to: 'posts#downvote'
+    end
+  end
+
+  resources :comments do
+    member do
+      put 'upvote', to: 'comments#upvote'
+      put 'downvote', to: 'comments#downvote'
+    end
+  end
 
   match "/posts/add_new_comment" => "posts#add_new_comment", :as => "add_new_comment_to_posts", :via => [:post]
 

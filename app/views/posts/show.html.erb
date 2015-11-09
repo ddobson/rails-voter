@@ -12,6 +12,12 @@
     <% @comments.each do |comment| %>
       <h5><%= comment.user.email %></h5>
       <p><%= comment.body %></p>
+        <%= link_to(upvote_comment_path(comment), method: :put, class: "vote-glyphicon" ) do %>
+          <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+        <% end %> 
+        <%= link_to(downvote_comment_path(comment), method: :put, class: "vote-glyphicon") do %>
+          <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
+        <% end %>
       <hr class="col-md-12">
     <% end %> 
   </div>
