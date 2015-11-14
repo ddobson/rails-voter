@@ -7,7 +7,8 @@ class PostsController < ApplicationController
   end
 
   def search
-    
+    query = params[:query]
+    @posts = Post.where("description LIKE ?", "%#{query}%")
   end
 
   def new
@@ -68,6 +69,6 @@ class PostsController < ApplicationController
   private
 
   def get_safe_params(params)
-    params.require(:post).permit(:id, :description, :link, :comment, :search)
+    params.require(:post).permit(:id, :description, :link, :comment, :query)
   end
 end

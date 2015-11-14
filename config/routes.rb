@@ -9,6 +9,8 @@ Rails.application.routes.draw do
       put 'downvote', to: 'posts#downvote'
     end
   end
+  
+  get 'search' => 'posts#search'
 
   resources :comments do
     member do
