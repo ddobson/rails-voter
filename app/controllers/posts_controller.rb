@@ -6,6 +6,10 @@ class PostsController < ApplicationController
     @posts = Post.all.order(created_at: :desc).limit(20)
   end
 
+  def search
+    
+  end
+
   def new
     @post = Post.new
   end
@@ -64,6 +68,6 @@ class PostsController < ApplicationController
   private
 
   def get_safe_params(params)
-    params.require(:post).permit(:id, :description, :link, :comment)
+    params.require(:post).permit(:id, :description, :link, :comment, :search)
   end
 end

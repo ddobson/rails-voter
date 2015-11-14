@@ -3,20 +3,27 @@
 <strong>Add a comment</strong>
 <%= form_tag "/posts/add_new_comment" do %>
   <%= hidden_field_tag "id", @post.id %>
-  <%= text_area_tag :body %>
-  <%= submit_tag "Post Comment" %>
+  <div>
+    <%= text_area_tag :body, '', class: 'form-control large-text-area' %>
+  </div>
+  <%= submit_tag "Post Comment", class: 'btn btn-primary breathing-room-top' %>
+  <hr class="col-md-12">
 <% end %>
 
 <div class="row">
   <div class="col-md-12">
     <% @comments.each do |comment| %>
-      <h5><%= comment.user.email %></h5>
+      <h5><span class="comment-votes">[<%= comment.total_comment_votes(comment.id) %>]</span> <%= comment.user.email %></h5>
       <p><%= comment.body %></p>
-        <%= link_to(upvote_comment_path(comment), method: :put, class: "vote-glyphicon" ) do %>
+        <%= link_to(upvote_comment_path(comment), method: :put, class: "btn btn-default vote-glyphicon" ) do %>
           <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
         <% end %> 
-        <%= link_to(downvote_comment_path(comment), method: :put, class: "vote-glyphicon") do %>
+        <%= link_to(downvote_comment_path(comment), method: :put, class: "btn btn-default vote-glyphicon") do %>
           <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
+        <% end %>
+        <% if comment.user == current_user %>
+          <%= link_to('Delete', comment, method: :delete, class: "btn btn-danger pull-right") %>
+          <%= link_to('Edit', edit_comment_path(comment.id), class: "btn btn-primary pull-right") %>
         <% end %>
       <hr class="col-md-12">
     <% end %> 

@@ -8,6 +8,7 @@ class Comment < ActiveRecord::Base
 
   # NOTE: Comments belong to a user
   belongs_to :user
+  belongs_to :post
   has_many :votes
 
   # Helper class method that allows you to build a comment
@@ -41,5 +42,10 @@ class Comment < ActiveRecord::Base
   # given the commentable class name and id
   def self.find_commentable(commentable_str, commentable_id)
     commentable_str.constantize.find(commentable_id)
+  end
+
+  def total_comment_votes(id)
+    @comment = Comment.find(id)
+    @comment.get_upvotes.size - @comment.get_downvotes.size
   end
 end

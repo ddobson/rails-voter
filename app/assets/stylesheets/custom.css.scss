@@ -31,10 +31,26 @@
  }
  
 a.vote-glyphicon {
-    font-size: 18px;
+    font-size: 14px;
 }
 
 a:hover.vote-glyphicon {
     text-decoration: none;
-    font-size: 18px;
+    font-size: 14px;
+}
+
+span.votes-tally {
+    color: #F58E20;
+}
+
+.large-text-area {
+    min-height: 200px;
+}
+
+.comment-votes {
+    color: #F58E20;
+}
+
+.breathing-room-top {
+    margin-top: 20px;
 }

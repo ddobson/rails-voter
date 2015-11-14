@@ -21,6 +21,12 @@
           </li>
         <% end %>
       </ul>
+      <%= form_tag("/search", method: "get", class: "navbar-form navbar-right", role: "search") do %>
+        <div class="form-group">
+          <%= text_field_tag(:q, '', class: "form-control", placeholder: "Search") %>
+        </div>
+        <%= submit_tag("Search", class: "btn btn-default") %>
+      <% end %>
     </nav>
   </div>
 </header>

@@ -1,0 +1,10 @@
+<h1>Edit</h1>
+
+<div class="jumbotron">
+  <%= bootstrap_form_for @comment do |f| %>
+      <div>
+        <%= f.text_area :body, class: "form-control large-text-area" %>
+      </div>
+    <%= f.submit "Update" %>
+  <% end %>
+</div>
