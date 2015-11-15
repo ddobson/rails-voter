@@ -26,8 +26,9 @@ gem 'bootstrap-sass',       '3.2.0.0'
 gem 'bootstrap_form'
 # User authentication
 gem 'devise', '~> 3.4.0'
-#Comments with Acts as Commentable
+#Comments with Acts as Commentable & Nested Set Dependency 
 gem 'acts_as_commentable_with_threading'
+gem 'awesome_nested_set'
 #Voting with acts as votable
 gem 'acts_as_votable', '~> 0.10.0'
 

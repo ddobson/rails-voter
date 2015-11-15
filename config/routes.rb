@@ -21,7 +21,10 @@ Rails.application.routes.draw do
 
   match "/posts/add_new_comment" => "posts#add_new_comment", :as => "add_new_comment_to_posts", :via => [:post]
 
-  get 'c/:category' => 'category#index'
+  get '/comments/:id/reply' => 'comments#reply'
+  match "/comments/reply_to_comment" => "comments#reply_to_comment", :as => "add_new_comment_to_comments", :via => [:post]
+
+  get '/c/:category' => 'category#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

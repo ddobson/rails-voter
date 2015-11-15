@@ -170,6 +170,7 @@ PLATFORMS
 DEPENDENCIES
   acts_as_commentable_with_threading
   acts_as_votable (~> 0.10.0)
+  awesome_nested_set
   bootstrap-sass (= 3.2.0.0)
   bootstrap_form
   byebug

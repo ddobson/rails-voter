@@ -10,6 +10,7 @@ class Comment < ActiveRecord::Base
   belongs_to :user
   belongs_to :post
   has_many :votes
+  has_many :comments
 
   # Helper class method that allows you to build a comment
   # by passing a commentable object, a user_id, and comment text
@@ -48,4 +49,5 @@ class Comment < ActiveRecord::Base
     @comment = Comment.find(id)
     @comment.get_upvotes.size - @comment.get_downvotes.size
   end
+
 end

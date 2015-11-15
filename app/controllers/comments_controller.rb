@@ -27,6 +27,19 @@ class CommentsController < ApplicationController
     redirect_to :back
   end
 
+  def reply
+    @parent_comment = Comment.find(params[:id])
+  end
+
+  def reply_to_comment
+    @parent_comment = Comment.find(params[:id])
+    @user_who_commented = current_user
+    @comment = Comment.build_from( @parent_comment, @user_who_commented.id, params[:body] )
+    @comment.move_to_child_of(@parent_comment)
+    @comment.save
+    redirect_to "/#{@parent_comment.commentable_type.downcase.pluralize}/#{@parent_comment.commentable_id}"
+  end
+
   private
     def get_safe_params(params)
     params.require(:comment).permit(:id, :body)
