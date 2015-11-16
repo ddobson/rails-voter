@@ -1,0 +1,12 @@
+<h1>Reply to comment</h1>
+
+<%= @parent_comment.body %>
+
+<%= form_tag "/comments/reply_to_comment" do %>
+  <%= hidden_field_tag "id", @parent_comment.id %>
+  <div>
+    <%= text_area_tag :body, '', class: 'form-control large-text-area' %>
+  </div>
+  <%= submit_tag "Post Comment", class: 'btn btn-primary breathing-room-top' %>
+  <hr class="col-md-12">
+<% end %> 

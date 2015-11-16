@@ -69,6 +69,6 @@ class PostsController < ApplicationController
   private
 
   def get_safe_params(params)
-    params.require(:post).permit(:id, :description, :link, :comment, :query)
+    params.require(:post).permit(:id, :description, :link, :comment, :body, :query)
   end
 end

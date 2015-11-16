@@ -1,4 +1,14 @@
-<h2><%= @post.description %></h2>
+<h3><%= @post.description %></h3>
+
+<div class="panel panel-default">
+  <div class="panel-body">
+    <% if @post.link.nil? %>
+      <p><%= @post.body %></p>
+    <% else %>
+      <%= link_to(post.link, post.link) %>
+    <% end %>
+  </div>
+</div>
 
 <strong>Add a comment</strong>
 <%= form_tag "/posts/add_new_comment" do %>

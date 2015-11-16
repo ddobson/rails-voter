@@ -1,41 +1,37 @@
-<h1>Post#new</h1>
+<h3>New Post</h3>
 
-<div class="jumbotron">
-  <%= bootstrap_form_for @post do |f| %>
-      <div>
-        <%= f.text_field :description %>
-      </div>
-      <div>
-        <%= f.text_field :link %>
-      </div>
-    <%= f.submit "Submit" %>
-  <% end %>
-</div>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+      <li role="presentation" class="active"><a href="#link" aria-controls="home" role="tab" data-toggle="tab">Link</a></li>
+      <li role="presentation"><a href="#text" aria-controls="profile" role="tab" data-toggle="tab">Text</a></li>
+    </ul>
 
-<div>
-
-  <!-- Nav tabs -->
-  <ul class="nav nav-tabs" role="tablist">
-    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Link</a></li>
-    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Text</a></li>
-  </ul>
-
-  <!-- Tab panes -->
-  <div class="tab-content">
-    <div role="tabpanel" class="tab-pane active" id="link">
-      <div class="jumbotron">
+    <!-- Tab panes -->
+    <div class="tab-content">
+      <div role="tabpanel" class="tab-pane active" id="link">
         <%= bootstrap_form_for @post do |f| %>
-          <div>
-            <%= f.text_field :description %>
-          </div>
-          <div>
-            <%= f.text_field :link %>
-          </div>
-           <%= f.submit "Submit" %>
-         <% end %>
+        <div>
+          <%= f.text_field :description %>
+        </div>
+        <div>
+          <%= f.text_field :link %>
+        </div>
+          <%= f.submit "Submit", class: "btn btn-primary" %>
+        <% end %>
+      </div>
+      <div role="tabpanel" class="tab-pane" id="text">
+        <%= bootstrap_form_for @post do |f| %>
+        <div>
+          <%= f.text_field :description %>
+        </div>
+        <div>
+          <%= f.text_area :body, class: "large-text-area" %>
+        </div>
+          <%= f.submit "Submit", class: "btn btn-primary"%>
+        <% end %>
       </div>
     </div>
-    <div role="tabpanel" class="tab-pane" id="text">...</div>
   </div>
-
 </div>  
