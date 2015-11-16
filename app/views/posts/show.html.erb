@@ -5,7 +5,7 @@
     <% if @post.link.nil? %>
       <p><%= @post.body %></p>
     <% else %>
-      <%= link_to(post.link, post.link) %>
+      <%= link_to(@post.link, @post.link) %>
     <% end %>
   </div>
 </div>

@@ -16,17 +16,19 @@
 <div class="container">
   <div class="row">
     <div class="col-md-3 col-md-offset-1 pull-right col-xs-12" id="rightCol">       
-      <div class="well"> 
-        <ul class="nav nav-stacked" id="sidebar">
-          <li>
-            <%= link_to new_post_path do %>
-              <button type="button" class="btn btn-primary btn-block" >
-                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                New Post
-              </button>
-            <% end %>
-          </li>
-        </ul>
+      <div class="panel panel-default">
+        <div class="panel-body"> 
+          <ul class="nav nav-stacked" id="sidebar">
+            <li>
+              <%= link_to new_post_path do %>
+                <button type="button" class="btn btn-primary btn-block" >
+                  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                  New Post
+                </button>
+              <% end %>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>  
     <div class="col-md-8 col-sm-12 col-xs-12">
