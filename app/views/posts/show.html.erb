@@ -22,25 +22,44 @@
 
 <div class="row">
   <div class="col-md-12">
-    <% @comments.each do |comment| %>
-      <h5><span class="comment-votes">[<%= comment.total_comment_votes(comment.id) %>]</span> <%= comment.user.email %></h5>
-      <p><%= comment.body %></p>
-        <%= link_to(upvote_comment_path(comment), method: :put, class: "btn btn-default vote-glyphicon" ) do %>
-          <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
-        <% end %> 
-        <%= link_to(downvote_comment_path(comment), method: :put, class: "btn btn-default vote-glyphicon") do %>
-          <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
-        <% end %>
-        <%= link_to("/comments/#{comment.id}/reply", method: :get, class: "btn btn-default") do %>
-          <span class="glyphicon glyphicon-pencil" aria-hidden="true"> Reply</span>
-        <% end %>
-        <% if comment.user == current_user %>
-          <%= link_to('Delete', comment, method: :delete, class: "btn btn-danger pull-right") %>
-          <%= link_to('Edit', edit_comment_path(comment.id), class: "btn btn-primary pull-right") %>
-        <% end %>
-        <% if comment.has_children? == true %>
-          <h3>True</h3>
-        <% end %>  
+    <% @post.root_comments.each do |comment| %>
+        <h5><span class="comment-votes">[<%= comment.total_comment_votes(comment.id) %>]</span> <%= comment.user.email %></h5>
+        <p><%= comment.body %></p>
+          <%= link_to(upvote_comment_path(comment), method: :put, class: "btn btn-default vote-glyphicon" ) do %>
+            <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+          <% end %> 
+          <%= link_to(downvote_comment_path(comment), method: :put, class: "btn btn-default vote-glyphicon") do %>
+            <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
+          <% end %>
+          <%= link_to("/comments/#{comment.id}/reply", method: :get, class: "btn btn-default") do %>
+            <span class="glyphicon glyphicon-pencil" aria-hidden="true"> Reply</span>
+          <% end %>
+          <% if comment.user == current_user %>
+            <%= link_to('Delete', comment, method: :delete, class: "btn btn-danger pull-right") %>
+            <%= link_to('Edit', edit_comment_path(comment.id), class: "btn btn-primary pull-right") %>
+          <% end %>
+          <% if comment.has_children? == true %>
+            <% comment.children.each do |child| %>
+              <div class="row">
+                <div class="col-xs-1"></div>
+                <div class="col-xs-11 reply-comment">
+                <h5><span class="comment-votes">[<%= child.total_comment_votes(child.id) %>]</span> <%= child.user.email %></h5>
+                  <p><%= child.body %></p>
+                  <%= link_to(upvote_comment_path(child), method: :put, class: "btn btn-default vote-glyphicon" ) do %>
+                    <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+                  <% end %> 
+                  <%= link_to(downvote_comment_path(child), method: :put, class: "btn btn-default vote-glyphicon") do %>
+                    <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
+                  <% end %>
+                  <% if child.user == current_user %>
+                    <%= link_to('Delete', child, method: :delete, class: "btn btn-danger pull-right") %>
+                    <%= link_to('Edit', edit_comment_path(child.id), class: "btn btn-primary pull-right") %>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+          </div>  
+          <% end %>  
       <hr class="col-md-12">
     <% end %> 
   </div>

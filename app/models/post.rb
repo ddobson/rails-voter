@@ -13,5 +13,4 @@ class Post < ActiveRecord::Base
     @post = Post.find(id)
     @post.get_upvotes.size - @post.get_downvotes.size
   end
-  
 end
